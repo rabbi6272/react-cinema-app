@@ -14,7 +14,7 @@ export default function ResultInfoBox({ selectedMovieID }) {
         setMovieDetails(null);
         setLoading(true);
         const response = await fetch(
-          `http://www.omdbapi.com/?i=${selectedMovieID}&apikey=5cc173f0`
+          `https://www.omdbapi.com/?i=${selectedMovieID}&apikey=5cc173f0`
         );
         const data = await response.json();
         if (data.Response === "True") {

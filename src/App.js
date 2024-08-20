@@ -24,7 +24,7 @@ export default function App() {
         setError(null);
         setMovies([]);
         const response = await fetch(
-          `http://www.omdbapi.com/?s=${query}&apikey=5cc173f0`
+          `https://www.omdbapi.com/?s=${query}&apikey=5cc173f0`
         );
         const data = await response.json();
         if (data.Response === "True") {
