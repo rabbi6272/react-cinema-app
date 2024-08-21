@@ -7,7 +7,7 @@ export default function ResultBox({
   error,
 }) {
   return (
-    <div className="resultbox bg-p-blue-950 shadow-2xl rounded-lg mt-20 flex flex-col gap-2 p-2">
+    <div className="resultbox bg-p-blue-950 shadow-2xl rounded-lg overflow-y-auto flex flex-col gap-2 p-2">
       {loading && <Loader />}
       {!loading &&
         movies &&

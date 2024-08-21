@@ -9,12 +9,13 @@ export default function ResultInfoBox({ selectedMovieID }) {
   const [watchedMovies, setWatchedMovies] = useState([]);
 
   useEffect(() => {
+    if (!selectedMovieID) return;
     async function searchMovies() {
       try {
         setMovieDetails(null);
         setLoading(true);
         const response = await fetch(
-          `https://www.omdbapi.com/?i=${selectedMovieID}&apikey=5cc173f0`
+          `https://www.omdbapi.com/?i=${selectedMovieID}&plot=full&apikey=5cc173f0`
         );
         const data = await response.json();
         if (data.Response === "True") {
@@ -40,7 +41,7 @@ export default function ResultInfoBox({ selectedMovieID }) {
     setUserRating(0);
   }
   return (
-    <div className="resultInfobox  bg-p-blue-950 shadow-2xl rounded-lg mt-20  flex flex-col gap-4 p-2">
+    <div className="resultInfobox  bg-p-blue-950 shadow-2xl rounded-lg flex flex-col gap-4 p-2">
       {loading && <Loader />}
       {!movieDetails ? (
         !loading && (
@@ -68,7 +69,7 @@ export default function ResultInfoBox({ selectedMovieID }) {
             >
               ←
             </button>
-            <div className="w-1/3 h-full rounded-lg">
+            <div className="w-1/4 h-full rounded-lg">
               <img
                 src={movieDetails.Poster}
                 alt={movieDetails.Title}
@@ -88,10 +89,6 @@ export default function ResultInfoBox({ selectedMovieID }) {
               <p className="text-gray-300">Director: {movieDetails.Director}</p>
               <p className="text-gray-300">Actors: {movieDetails.Actors}</p>
             </div>
-          </div>
-
-          <div className="p-2 bg-p-blue-900 rounded-lg">
-            <p className="text-gray-300">{movieDetails.Plot}</p>
           </div>
 
           <div className="p-6 bg-p-blue-900 flex flex-col gap-4 items-center justify-center rounded-lg">
@@ -121,6 +118,10 @@ export default function ResultInfoBox({ selectedMovieID }) {
                 )}
               </>
             )}
+          </div>
+
+          <div className="p-2 bg-p-blue-900 rounded-lg">
+            <p className="text-gray-300">{movieDetails.Plot}</p>
           </div>
         </>
       )}

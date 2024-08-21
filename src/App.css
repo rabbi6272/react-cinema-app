@@ -2,7 +2,7 @@
 
 ::-webkit-scrollbar {
   /* Customize the scrollbar width */
-  width: 5px;
+  width: 4px;
 }
 ::-webkit-scrollbar-thumb {
   /* Customize the scrollbar thumb */
@@ -23,15 +23,37 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
 
 .resultbox,
 .resultInfobox {
-  height: 85%;
-  width: 47%;
+  height: 85vh;
   overflow-y: auto;
 }
+.movie-img {
+  width: 20%;
+  aspect-ratio: 3/4;
+  object-fit: cover;
+}
 
+@media screen and (max-width: 768px) {
+  .resultbox,
+  .resultInfobox {
+    height: 45vh;
+    width: 95%;
+    margin: 0 auto;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .resultbox,
+  .resultInfobox {
+    width: 45vw;
+  }
+}
 @media screen and (min-width: 1024px) {
   .resultbox,
   .resultInfobox {
@@ -43,22 +65,16 @@ body {
   .resultInfobox {
     width: 30vw;
   }
-}
-.movie-img {
-  width: 20%;
-  aspect-ratio: 3/4;
-  object-fit: cover;
+  .movie-img {
+    width: 17%;
+  }
 }
 
-.movie-info {
-  font-size: 15px;
-}
-
-lord-icon {
+form lord-icon {
   position: absolute;
   top: 50%;
-  right: 3%;
   transform: translatey(-50%);
+  right: 5%;
 }
 
 /* HTML: <div class="loader"></div> */

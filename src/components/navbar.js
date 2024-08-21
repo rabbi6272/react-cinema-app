@@ -1,39 +1,93 @@
 export default function Navbar({ query, setQuery, movies }) {
   return (
-    <nav className="bg-p-blue-700 absolute top-0 left-0 h-20 w-full flex items-center justify-around">
-      <div>
+    <>
+      <span className="hidden md:block">
+        <nav className="bg-p-blue-700 h-20 w-full flex items-center justify-around">
+          <h1 className="text-white font-bold text-3xl">🍿CinemaApp</h1>
+
+          <form
+            className=" relative hidden md:block"
+            onSubmit={(e) => {
+              e.preventDefault();
+              setQuery("");
+            }}
+          >
+            <input
+              className=" bg-p-blue-800 focus:border focus:border-p-blue-950 focus:outline-none text-gray-700 py-2 px-10 lg:px-20 rounded-full"
+              placeholder="search movie....."
+              value={query}
+              onChange={(e) => {
+                setQuery(e.target.value);
+              }}
+            />
+            <lord-icon
+              src="https://cdn.lordicon.com/pagmnkiz.json"
+              trigger="in"
+              stroke="bold"
+              state="hover-rotation"
+              colors="primary:#ffffff"
+              style={{
+                Width: "50px",
+                Height: "50px",
+              }}
+            ></lord-icon>
+          </form>
+
+          <div className="text-gray-300 hidden lg:block">
+            <h3>Found {movies ? movies.length : 0} results</h3>
+          </div>
+        </nav>
+      </span>
+
+      <span className="block md:hidden">
+        <SmallNav query={query} setQuery={setQuery} />
+      </span>
+    </>
+  );
+}
+
+function SmallNav({ query, setQuery }) {
+  function showform() {
+    document.getElementById("form").classList.toggle("hidden");
+  }
+  return (
+    <nav className="bg-p-blue-700 h-auto w-full p-2">
+      <div className="w-full flex items-center justify-around mb-2">
         <h1 className="text-white font-bold text-3xl">🍿CinemaApp</h1>
+        <span
+          onClick={showform}
+          className="cursor-pointer bg-p-blue-800 active:scale-90 rounded-full h-12 w-12 grid place-items-center"
+        >
+          <lord-icon
+            src="https://cdn.lordicon.com/kkvxgpti.json"
+            colors="primary:#ffffff"
+            trigger="loop"
+            delay="2000"
+            style={{
+              Width: "50px",
+              Height: "50px",
+            }}
+          ></lord-icon>
+        </span>
       </div>
+
       <form
-        className="relative"
+        id="form"
+        className=" w-full px-8"
         onSubmit={(e) => {
           e.preventDefault();
           setQuery("");
         }}
       >
         <input
-          className="bg-p-blue-800 focus:border focus:border-p-blue-950 focus:outline-none text-gray-700 py-2 px-10 lg:px-20 rounded-full"
+          className="bg-p-blue-800 w-full focus:border focus:border-p-blue-950 focus:outline-none text-gray-700 py-2 px-10 lg:px-20 rounded-full"
           placeholder="search movie....."
           value={query}
           onChange={(e) => {
             setQuery(e.target.value);
           }}
         />
-        <lord-icon
-          src="https://cdn.lordicon.com/pagmnkiz.json"
-          trigger="hover"
-          stroke="bold"
-          state="hover-rotation"
-          style={{
-            Width: "50px",
-            Height: "50px",
-          }}
-        ></lord-icon>
       </form>
-
-      <div>
-        <h3>Found {movies ? movies.length : 0} results</h3>
-      </div>
     </nav>
   );
 }

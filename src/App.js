@@ -43,15 +43,17 @@ export default function App() {
   }, [query]);
 
   return (
-    <div className="App h-screen w-screen flex gap-4 items-center justify-center">
+    <div className="App h-screen w-screen">
       <Navbar query={query} setQuery={setQuery} movies={movies} />
-      <ResultBox
-        movies={movies}
-        setSelectedMovieID={setSelectedMovieID}
-        loading={loading}
-        error={error}
-      />
-      <ResultInfoBox selectedMovieID={selectedMovieID} />
+      <div className="Box flex flex-col md:flex-row gap-2 md:gap-4 justify-center mt-2 overflow-y-auto">
+        <ResultBox
+          movies={movies}
+          setSelectedMovieID={setSelectedMovieID}
+          loading={loading}
+          error={error}
+        />
+        <ResultInfoBox selectedMovieID={selectedMovieID} />
+      </div>
     </div>
   );
 }
