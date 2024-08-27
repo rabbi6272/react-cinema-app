@@ -59,7 +59,7 @@ function SmallNav({ query, setQuery }) {
 
   return (
     <nav className="bg-p-blue-700 h-auto w-full p-2">
-      <div className="w-full flex items-center justify-around mb-2">
+      <div className="w-full flex items-center justify-around">
         <h1 className="text-white font-bold text-3xl">🍿CinemaApp</h1>
         <span
           id="menu-button"
@@ -79,7 +79,7 @@ function SmallNav({ query, setQuery }) {
       {showSearchBox && (
         <form
           id="form"
-          className="relative w-full px-8"
+          className="relative w-full px-8 mt-2"
           onSubmit={(e) => {
             e.preventDefault();
             setQuery("");

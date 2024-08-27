@@ -9,7 +9,10 @@ export default function ResultInfoBox({ selectedMovieID }) {
   const [watchedMovies, setWatchedMovies] = useState([]);
 
   useEffect(() => {
-    if (!selectedMovieID) return;
+    if (selectedMovieID === null) {
+      setMovieDetails(null);
+      return;
+    }
     async function searchMovies() {
       try {
         setMovieDetails(null);
@@ -32,6 +35,15 @@ export default function ResultInfoBox({ selectedMovieID }) {
     searchMovies();
   }, [selectedMovieID]);
 
+  useEffect(() => {
+    if (movieDetails === null) return;
+
+    document.title = `MOVIE | ${movieDetails.Title}`;
+
+    return () => {
+      document.title = "Cinema App || Movie Recommender";
+    };
+  }, [movieDetails]);
   function addToWatched(movieDetails) {
     const watchedMovie = {
       ...movieDetails,
@@ -40,10 +52,11 @@ export default function ResultInfoBox({ selectedMovieID }) {
     setWatchedMovies([...watchedMovies, watchedMovie]);
     setUserRating(0);
   }
+
   return (
     <div className="resultInfobox  bg-p-blue-950 shadow-2xl rounded-lg flex flex-col gap-4 p-2">
       {loading && <Loader />}
-      {!movieDetails ? (
+      {movieDetails === null ? (
         !loading && (
           <>
             <div className="h-auto w-full bg-p-blue-900 rounded flex flex-col gap-2 p-2 text-center">
@@ -69,12 +82,8 @@ export default function ResultInfoBox({ selectedMovieID }) {
             >
               ←
             </button>
-            <div className="w-1/4 h-full rounded-lg">
-              <img
-                src={movieDetails.Poster}
-                alt={movieDetails.Title}
-                className="rounnded-lg"
-              />
+            <div className="movieDetailsImg">
+              <img src={movieDetails.Poster} alt={movieDetails.Title} />
             </div>
             <div className="h-full flex-1 pl-2">
               <h1 className="text-white font-bold text-2xl">
@@ -107,7 +116,7 @@ export default function ResultInfoBox({ selectedMovieID }) {
                 />
                 {userRating > 0 && (
                   <button
-                    className="text-white bg-p-blue-600 hover:bg-p-blue-700 px-10 py-2 rounded-full"
+                    className="text-white bg-p-blue-600 hover:bg-p-blue-700 px-12 py-2 tracking-wider rounded-full"
                     onClick={() => {
                       addToWatched(movieDetails);
                       setMovieDetails(null);

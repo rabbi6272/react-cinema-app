@@ -45,7 +45,7 @@ export default function App() {
   return (
     <div className="App h-screen w-screen">
       <Navbar query={query} setQuery={setQuery} movies={movies} />
-      <div className="Box flex flex-col md:flex-row gap-2 md:gap-4 justify-center mt-2 overflow-y-auto">
+      <div className="Box flex flex-col md:flex-row gap-4 md:gap-2 lg:gap-4 justify-center mt-2 overflow-y-auto">
         <ResultBox
           movies={movies}
           setSelectedMovieID={setSelectedMovieID}

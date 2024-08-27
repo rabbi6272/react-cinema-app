@@ -27,48 +27,7 @@ body {
   padding: 0;
   overflow-x: hidden;
 }
-
-.resultbox,
-.resultInfobox {
-  height: 85vh;
-  overflow-y: auto;
-}
-.movie-img {
-  width: 20%;
-  aspect-ratio: 3/4;
-  object-fit: cover;
-}
-
-@media screen and (max-width: 768px) {
-  .resultbox,
-  .resultInfobox {
-    height: 45vh;
-    width: 90%;
-    margin: 0 auto;
-  }
-}
-@media screen and (min-width: 768px) {
-  .resultbox,
-  .resultInfobox {
-    width: 45vw;
-  }
-}
-@media screen and (min-width: 1024px) {
-  .resultbox,
-  .resultInfobox {
-    width: 35vw;
-  }
-}
-@media screen and (min-width: 1280px) {
-  .resultbox,
-  .resultInfobox {
-    width: 30vw;
-  }
-  .movie-img {
-    width: 17%;
-  }
-}
-
+/* navbar-section */
 form lord-icon {
   position: absolute;
   top: 50%;
@@ -89,6 +48,28 @@ form lord-icon {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* resultbox-section */
+.movie-img {
+  width: 20%;
+  aspect-ratio: 3/4;
+}
+.resultbox,
+.resultInfobox {
+  height: 85vh;
+  overflow-y: auto;
+}
+
+/* resultInfobox-section */
+.movieDetailsImg {
+  width: 35%;
+  margin: auto 0;
+}
+.movieDetailsImg img {
+  width: 100%;
+  border-radius: 0.5rem;
+  aspect-ratio: 3/4;
 }
 
 /* HTML: <div class="loader"></div> */
@@ -117,5 +98,38 @@ form lord-icon {
 @keyframes l15 {
   100% {
     transform: rotate(1turn);
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .resultbox,
+  .resultInfobox {
+    height: 45vh;
+    width: 95%;
+    margin: 0 auto;
+  }
+  .movieDetailsImg {
+    width: 40%;
+  }
+}
+@media screen and (min-width: 768px) {
+  .resultbox,
+  .resultInfobox {
+    width: 48vw;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .resultbox,
+  .resultInfobox {
+    width: 35vw;
+  }
+}
+@media screen and (min-width: 1280px) {
+  .resultbox,
+  .resultInfobox {
+    width: 30vw;
+  }
+  .movie-img {
+    width: 17%;
   }
 }
