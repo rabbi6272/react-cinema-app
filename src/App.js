@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import "./App.css";
 import Navbar from "./components/navbar";
 import ResultBox from "./components/resultbox";
@@ -13,18 +12,22 @@ export default function App() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    const controler = new AbortController();
+    const signal = controler.signal;
     async function searchMovies() {
       if (query === "") {
         setMovies([]);
         setError(null);
         return;
       }
+
       try {
         setLoading(true);
         setError(null);
         setMovies([]);
         const response = await fetch(
-          `https://www.omdbapi.com/?s=${query}&apikey=5cc173f0`
+          `https://www.omdbapi.com/?s=${query}&apikey=5cc173f0`,
+          { signal }
         );
         const data = await response.json();
         if (data.Response === "True") {
@@ -40,6 +43,9 @@ export default function App() {
       }
     }
     searchMovies();
+    return () => {
+      controler.abort();
+    };
   }, [query]);
 
   return (
